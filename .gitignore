@@ -7,8 +7,10 @@ libtool
 Makefile
 Makefile.in
 src/.deps
+src/*.o
 src/config.h
 src/config.h.in~
+src/love
 src/Makefile
 src/Makefile.in
 src/parser.c
