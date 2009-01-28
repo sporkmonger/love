@@ -1,0 +1,6 @@
+Love is intended to be a learning environment for me to find out how to
+write lexers, parsers, garbage collectors, etc.  It doesn't do much right
+now, but I'd like to target LLVM, and ultimately, bootstrap the
+interpreter and compiler.
+
+I've got a long way to go.
