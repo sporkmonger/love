@@ -1,0 +1,34 @@
+# Superclass is Object
+class Tree {
+}
+# Superclass is Tree
+class Pine < Tree {
+}
+
+module Book {
+}
+# Superclass is Object
+class HardCover << Book
+# Raises an error, cannot have a module as a superclass
+class SoftCover < Book
+
+# lambda syntax
+->(a, b=42) {
+  
+}
+
+# named parameter, preferred
+fib(n:10)
+# or unnamed, where parameter names would distract
+fib(10)
+# but not both
+method(1, 2, x:3) # => compiler error
+# named parameters allow you to specify parameters in any order
+
+def fib(n)
+0 -> {0},
+1 -> {1},
+(n > 1) -> {fib(n-1) + fib(n-2)}
+
+1;2;3;4
+# => 4

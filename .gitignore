@@ -1,0 +1,17 @@
+aclocal.m4
+autom4te.cache
+config.log
+config.status
+configure
+libtool
+Makefile
+Makefile.in
+src/.deps
+src/config.h
+src/config.h.in~
+src/Makefile
+src/Makefile.in
+src/parser.c
+src/parser.h
+src/scanner.c
+src/stamp-h1
