@@ -12,13 +12,16 @@ number ({digit}+|{digit}+\.{digit}*|{digit}*\.{digit}+)([Ee][+\-]?{digit}+)?
 letter [a-zA-Z]
 constant [A-Z][a-zA-Z0-9_]*
 variable [a-z][a-z0-9_]*
+message [a-z][a-z0-9_=!?]*
 
 %%
 "class"              return CLASS;
 "module"             return MODULE;
 "self"               return SELF;
 "super"              return SUPER;
-"bubble"             return BUBBLE;
+"relay"              return RELAY;
+"var"                return IVAR;
+"cvar"               return CVAR;
 "def"                return METHOD;
 "if"                 return IF;
 "when"               return WHEN;
@@ -26,8 +29,11 @@ variable [a-z][a-z0-9_]*
 "puts"               return PUTS;
 "->"                 return LAMBDA;
 {number}             { yylval=atoi(yytext); return NUMBER; }
-\n                   { line_number++; }
+\n                   { line_number++; return NEWLINE; }
 [ \t]+               /* ignore whitespace */;
+"..."                return '...';
+".."                 return '..';
+"."                  return '.';
 "+"                  return '+';
 "-"                  return '-';
 "*"                  return '*';
@@ -39,6 +45,7 @@ variable [a-z][a-z0-9_]*
 "]"                  return ']';
 "{"                  return '{';
 "}"                  return '}';
+"@"                  return '@';
 
 %%
 

@@ -16,16 +16,21 @@ int yywrap()
 
 %}
 
+%token NEWLINE
 %token CLASS
 %token MODULE
 %token SELF
 %token SUPER
 %token BUBBLE
+%token IVAR
+%token CVAR
 %token METHOD
 %token IF
 %token UNLESS
 %token WHEN
 %token FOR
+%token STRING_LITERAL
+%token SYMBOL
 %token NUMBER
 %token CONSTANT
 %token VARIABLE
@@ -42,12 +47,21 @@ int yywrap()
 %%
 
 expression: /* empty */
-  | NUMBER                               { $$ = $1; }
+  | atom                                 { $$ = $1; }
   | expression ';' expression            { $$ = $3; }
   | arithmetic
   | PUTS expression                      { printf("%d\n", $2); $$ = $2; }
   | '(' expression ')'                   { $$ = $2; }
   ;
+
+atom:
+  SELF                                   { $$ = $1; }
+  | literal                              { $$ = $1; }
+
+literal:
+  STRING_LITERAL                         { $$ = $1; }
+  | SYMBOL                               { $$ = $1; }
+  | NUMBER                               { $$ = $1; }
 
 arithmetic:
   expression '*' expression              { $$ = $1 * $3; }
