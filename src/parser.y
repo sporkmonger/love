@@ -21,7 +21,7 @@ int yywrap()
 %token MODULE
 %token SELF
 %token SUPER
-%token BUBBLE
+%token RELAY
 %token IVAR
 %token CVAR
 %token METHOD
