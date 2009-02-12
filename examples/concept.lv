@@ -1,34 +1,88 @@
 # Superclass is Object
 class Tree {
-}
+};
 # Superclass is Tree
 class Pine < Tree {
-}
+};
 
 module Book {
-}
+};
 # Superclass is Object
-class HardCover << Book
+class HardCover << Book;
 # Raises an error, cannot have a module as a superclass
-class SoftCover < Book
+class SoftCover < Book;
+
+class URI {
+  var path; # instance variables are always protected
+            # syntactic sugar
+
+  foo = 42; # this is NOT an instance variable, and its value will be garbage
+            # collected after it goes out of scope
+
+  class self {
+    var scheme_mapping = Hash.new; # classes can have instance variables too
+  
+    def encode(component) {
+      # attempting to assign a new value to 'component' will cause a compiler
+      # error unless there's an instance variable named 'component', in
+      # which case, the instance variable's value would be changed
+    }
+  };
+
+  def path {
+    relay # instance variables are implemented as protected messages,
+          # so the path method we just declared hides the path variable
+  }
+  
+  @protected # virtually identical to Python's decorators
+  def helper {
+    
+  }
+}
+
+# All three of these will evaluate to the exact same object
+m = class Object {
+  self.metaclass
+};
+m = class Object {
+  class self {
+    self
+  }
+};
+m = Object.new.class.metaclass;
 
 # lambda syntax
 ->(a, b=42) {
   
-}
+};
 
 # named parameter, preferred
-fib(n:10)
+fib n:10;
 # or unnamed, where parameter names would distract
-fib(10)
+fib(10);
 # but not both
-method(1, 2, x:3) # => compiler error
+# method(1, 2, x:3) # => compiler error
 # named parameters allow you to specify parameters in any order
 
 def fib(n)
 0 -> {0},
 1 -> {1},
-(n > 1) -> {fib(n-1) + fib(n-2)}
+(n > 1) -> {fib(n-1) + fib(n-2)};
 
 1;2;3;4
 # => 4
+
+puts ((puts 1;1) + (puts 2;2) * ((puts 3;3) - (puts 4;4)))
+# 1
+# 2
+# 3
+# 4
+# -1
+
+[1,2,3,4].map each:->(n) {n + 1}
+# or
+[1,2,3,4].map ->(n) {n + 1}
+
+if 42 > 0 {
+  puts "obviously"
+}

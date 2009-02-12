@@ -1,2 +1,1 @@
-puts (13 + (1;2;4;3));
-puts 2 + 3
+puts ((puts 1;1) + ((puts 2;2) - (puts 3;3)) * (puts 4;4))
